@@ -11,7 +11,7 @@ Redmine::Plugin.register :google_apps do
   author 'Juan Wajnerman'
   description 'Google Apps user integration'
   version '0.1'
-  url 'http://example.com/path/to/plugin'
+  url 'https://github.com/waj/redmine_google_apps'
   author_url 'http://weblogs.manas.com.ar/waj'
 
   menu :admin_menu, :google_apps, { :controller => 'google_apps', :action => 'admin' }, :caption => 'Google Apps'
