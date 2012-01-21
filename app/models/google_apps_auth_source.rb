@@ -1,0 +1,3 @@
+class GoogleAppsAuthSource < AuthSource
+  
+end

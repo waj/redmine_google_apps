@@ -1,0 +1,3 @@
+= google_apps
+
+Redmine plugin to authenticate users on a Google Apps domain

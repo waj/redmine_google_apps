@@ -1,0 +1,26 @@
+<div class="contextual">
+<%= link_to 'New Google Apps domain', {:action => 'add'}, :class => 'icon icon-add' %>
+</div>
+
+<h2>Google Apps</h2>
+
+<div class="autoscroll">
+<table class="list">		
+  <thead><tr>
+	<th>Domain</th>
+	<th>Users</th>
+    <th></th>
+  </tr></thead>
+  <tbody>
+	<% @domains.each do |domain| -%>
+	<tr>
+		<td><%= domain.name %></td>
+		<td align="center"><%= domain.users.count %></td>
+	    <td class="buttons"><%= link_to l(:button_delete), { :action => :delete, :domain => domain.name }, { :confirm => l(:text_are_you_sure), :class => 'icon icon-del' } %></td>
+	</tr>
+	<% end -%>
+  </tbody>
+</table>
+</div>
+
+<% html_title('Google Apps') -%>

@@ -1,0 +1,8 @@
+<h2><%= link_to 'Google Apps', :controller => 'google_apps', :action => 'admin' %> &#187; New domain</h2>
+
+<% form_for :domain, :builder => TabularFormBuilder do |f| -%>
+<div class="box tabular">
+  <p><%= f.text_field :name, :label => :field_name %></p>
+</div>
+<p><%= f.submit l(:button_create) %></p>
+<% end -%>
