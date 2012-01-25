@@ -1,7 +1,7 @@
 class GoogleAppsController < AccountController
-  
+
   layout 'admin'
-  
+
   AX_EMAIL = 'http://axschema.org/contact/email'
   AX_FIRST = 'http://axschema.org/namePerson/first'
   AX_LAST = 'http://axschema.org/namePerson/last'
@@ -16,13 +16,13 @@ class GoogleAppsController < AccountController
         email = profile_data[AX_EMAIL].first
         first = profile_data[AX_FIRST].first
         last = profile_data[AX_LAST].first
-        
+
         user = domain.users.find_by_mail email
         if user.nil?
           login = email[/^[^@]*/]
-          
+
           begin
-            user = User.new :firstname => first, :lastname => last, :mail => mail
+            user = User.new :firstname => first, :lastname => last, :mail => email
             user.login = login
             user.auth_source = domain
             user.save!
@@ -31,9 +31,9 @@ class GoogleAppsController < AccountController
             return redirect_to :controller => :account, :action => :login
           end
         end
-        
+
         user.update_attribute(:last_login_on, Time.now)
-        
+
         successful_authentication user
       else
         flash[:error] = result.message
@@ -41,18 +41,18 @@ class GoogleAppsController < AccountController
       end
     end
   end
-  
+
   def admin
     @domains = GoogleAppsAuthSource.all
   end
-  
+
   def add
     if request.post?
       GoogleAppsAuthSource.create! params[:domain]
       redirect_to :action => :admin
     end
   end
-  
+
   def delete
     GoogleAppsAuthSource.delete_all :name => params[:domain]
     redirect_to :action => :admin
