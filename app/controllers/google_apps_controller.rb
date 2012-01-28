@@ -1,3 +1,5 @@
+require 'gapps_openid'
+
 class GoogleAppsController < AccountController
 
   layout 'admin'
